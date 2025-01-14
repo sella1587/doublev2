@@ -1,0 +1,38 @@
+{ 
+"Project":"Q35", 
+"PropertyDisplaySettings": 
+	[ 
+		{
+			"Property": "component_type",
+			"SourcesPriorities": "PID;SPEL;SM3D;USER",
+			"DisplayMode":"First"
+		},
+		{
+			"Property": "description",
+			"SourcesPriorities": "SM3D;PID;SPEL;USER",
+			"DisplayMode":"First"			
+		},
+		{
+			"Property": "trade",
+			"SourcesPriorities": "SPEL;PID;SPEL;USER",
+			"DisplayMode":"First"		
+		},
+		{
+			"Property": "function",
+			"SourcesPriorities": "PID;SPEL;SM3D;USER",
+			"DisplayMode":"First"			
+		},
+		{
+			"Property": "lot",
+			"SourcesPriorities": "PID;SPEL;SM3D;USER",
+			"DisplayMode":"All"			
+		},
+		{
+			"Property": "room",
+			"SourcesPriorities": "PID;SPEL;SM3D;USER",
+			"DisplayMode":"All"
+		},		
+	] 
+}
+
+

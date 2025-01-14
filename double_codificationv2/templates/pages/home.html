@@ -1,0 +1,118 @@
+{% extends 'base.html'%}
+{% load render_table from django_tables2 %}
+{% block nvabar %}
+<!-- As a link -->
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <!-- Container wrapper -->
+    <div class="container-fluid">
+      <!-- Navbar brand -->
+      <a class="navbar-brand" href="#">Chantier de L'atlantique(logo)</a>
+        <!-- Right links -->
+        <ul class="navbar-nav ms-auto d-flex flex-row mt-3 mt-lg-0">
+          <li class="nav-item text-center mx-2 mx-lg-1">
+            <a class="nav-link" href="#!">
+              <div>
+                <i class="fas fa-bell fa-lg mb-1"></i>
+                <span class="badge rounded-pill badge-notification bg-info">INIT FILTRE</span>
+              </div>
+              
+            </a>
+          </li>
+          <li class="nav-item text-center mx-2 mx-lg-1">
+            <a class="nav-link" href="#!">
+              <div>
+                <i class="fas fa-globe-americas fa-lg mb-1"></i>
+                <span class="badge rounded-pill badge-notification bg-success">REFRESH</span>
+              </div>              
+            </a>
+          </li>
+          <li class="nav-item text-center mx-2 mx-lg-1">
+            <a class="nav-link" href="#!">
+              <div>
+                <i class="fas fa-globe-americas fa-lg mb-1"></i>
+                <span class="badge rounded-pill badge-notification bg-info">APPLY MODIF</span>
+              </div>              
+            </a>
+          </li>
+          <li class="nav-item text-center mx-2 mx-lg-1">
+            <a class="nav-link" href="#!">
+              <div>
+                <i class="fas fa-globe-americas fa-lg mb-1"></i>
+                <span class="badge rounded-pill badge-notification bg-danger">DELETE</span>
+              </div>              
+            </a>
+          </li>
+        </ul>
+        <!-- Right links -->
+  
+        <!-- Search form -->
+        <form class="d-flex input-group w-auto ms-lg-3 my-3 my-lg-0">
+          <input type="search" class="form-control" placeholder="Search" aria-label="Search" />
+          <button class="btn btn-primary" type="button" data-mdb-ripple-init data-mdb-ripple-color="dark">
+            Search
+          </button>
+        </form>
+      </div>
+      <!-- Collapsible wrapper -->
+    </div>
+    <!-- Container wrapper -->
+  </nav>
+  <!-- Navbar -->
+ 
+{% endblock %}
+{% block content%}
+<ul id="context-menu" class="dropdown-menu" style="display: none; position: absolute; width: 11%;">
+    <form method="get">       
+        {{ filtreform.form.as_p }} 
+        <button type="submit">Filter</button>       
+    </form>
+</ul>
+<br>
+<div class="table container-fluid">   
+    {% render_table tables_consolide %}  
+</div>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+{% endblock%}
+{% block script %}
+<script>
+    //var ckir = "ot";
+    $(document).ready(function(){
+        
+        $('table thead th').click(function(e){
+            e.preventDefault();
+            var x = e.pageX;
+            var y = e.pageY;
+            var ckir = $(this).attr('id');            
+            $('form p, form div').each(function() {
+                var inputId = $(this).find('input').attr('id');
+                
+                // Vérifier si l'ID contient '_uid_'
+                var findit = ckir;
+               
+                if (inputId && inputId.includes(findit)) {
+                    $(this).show();  // Afficher le <p> si l'ID contient '_uid_'
+                } else {
+                    $(this).hide();  // Masquer le <p> sinon
+                };
+            });
+            $("#context-menu").css({
+                display: "block",
+                left: x,
+                top: y
+            });
+            return false;
+        });
+       
+        $('table').DataTable({
+        paging: true,
+        searching: false, 
+        ordering: false,
+        autoFill: {
+            columns: ':not(:last-child)'
+        }
+      });    
+    });
+</script>
+{% endblock%}
