@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-k)wa*p1-epsgu##z9%&u9ym$_l^4boeu9b)t(vtpvqi@01ov0!
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 LOGIN_REDIRECT_URL = 'selectouvrage'
 # Application definition
@@ -36,8 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    'django.contrib.messages',
-    'livesync',
+    'django.contrib.messages',   
     'django.contrib.staticfiles',
     'core_dc',
     'rest_framework',
@@ -85,10 +84,10 @@ WSGI_APPLICATION = 'double_codificationv2.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'DoubleCodification',
-        'USER': 'owndblcodif',
-        'PASSWORD': 'owndblcodif',
-        'HOST': 'Srvdocker2',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': '123456',
+        'HOST': 'db',
         'PORT': '5433'
         # 'OPTIONS':{
         #     'options': '-c search_path=public,projet,j35'
@@ -96,9 +95,6 @@ DATABASES = {
     }
     
 }
-MIDDLEWARE_CLASSES = (
-    'livesync.core.middleware.DjangoLiveSyncMiddleware',
-)
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 

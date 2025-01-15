@@ -12,3 +12,4 @@ markdown
 drf-yasg
 pandas
 django-tables2
+uvicorn
